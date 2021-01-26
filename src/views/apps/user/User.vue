@@ -1,9 +1,10 @@
 <template>
 <a-table :columns="columns" :data-source="data" bordered>
     <template
-      v-for="col in ['name', 'cname', 'email', 'userName', 'phone' ]"
+      v-for="col in ['name', 'companyname', 'email', 'userName', 'userPhone' ]"
       :slot="col"
-      slot-scope="text, record">
+      slot-scope="text, record"
+    >
       <div :key="col">
         <a-input
           v-if="record.editable"
@@ -30,7 +31,7 @@
       </div>
     </template>
     <template slot="delete" slot-scope="text, record">
-       <a @click="() => onDelete(record.key)">Delete</a>
+        <a @click="() => onDelete(record.key)">Delete</a>
     </template>
   </a-table>
 
@@ -42,9 +43,9 @@ import "firebase/database";
 const columns = [
   {
     title: 'Companyname',
-    dataIndex: 'cname',
-    key: 'cname',
-    scopedSlots: { customRender: 'cname' }
+    dataIndex: 'companyname',
+    key: 'companyname',
+    scopedSlots: { customRender: 'companyname' }
   },
   {
     title: 'Email',
@@ -54,16 +55,16 @@ const columns = [
   },
   {
     title: 'Username',
-    dataIndex: 'uname',
-    key: 'uname',
-    scopedSlots: { customRender: 'uname' },
+    dataIndex: 'userName',
+    key: 'userName',
+    scopedSlots: { customRender: 'userName' },
     width: 150
   },
   {
     title: 'Userphone',
-    dataIndex: 'phone',
-    key: 'phone',
-    scopedSlots: { customRender: 'phone' }
+    dataIndex: 'userPhone',
+    key: 'userPhone',
+    scopedSlots: { customRender: 'userPhone' }
   },
    {
     title: 'Edit',
@@ -81,7 +82,7 @@ const columns = [
 ];
 
 const data = [];
-const db = firebase.database().ref('bbs').limitToLast(10);
+const db = firebase.database().ref('user').limitToLast(10);
 
 export default {
   data() {
@@ -109,7 +110,7 @@ export default {
 
    onDelete(key) {
      // eslint-disable-next-line prefer-template
-     const sref = firebase.database().ref('bbs/' + key + "/");
+     const sref = firebase.database().ref('user/' + key + "/");
           sref
             .remove()
             .then(function() {
@@ -137,7 +138,7 @@ export default {
       const newData = [...this.data];
       const target = newData.filter(item => key === item.key)[0];
       // eslint-disable-next-line prefer-template
-      const sref = firebase.database().ref('bbs/' + key + "/");
+      const sref = firebase.database().ref('user/' + key + "/");
 
       if (target) {
         delete target.editable;
@@ -152,9 +153,10 @@ export default {
       const target = newData.filter(item => key === item.key)[0];
 
       if (target) {
-        location.reload()            
+              location.reload()            
       }
     }
+
  },
  
  mounted () {  
@@ -165,10 +167,10 @@ export default {
 
       const _t = {
         key : childSnapshot.key,
-        uname : childSnapshot.val().uname,
+        userName : childSnapshot.val().userName,
         email : childSnapshot.val().email,
-        phone : childSnapshot.val().phone,
-        cname : childSnapshot.val().cname
+        userPhone : childSnapshot.val().userPhone,
+        companyname : childSnapshot.val().companyname
         }
         self.data.push(_t)
         });

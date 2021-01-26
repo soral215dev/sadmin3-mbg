@@ -33,11 +33,17 @@ export default [
     i18n: "Dashboard",
     submenu: [
       {
-        url: "/test",
-        name: "test",
-        slug: "dashboard-analytics",
-        i18n: "Test"
-      }
-    ]
-  }
+        url: "/user",
+        name: "user",
+        slug: "user",
+        i18n: "User",
+      },
+      {
+        url: "/bbs",
+        name: "bbs",
+        slug: "bbs",
+        i18n: "Bbs",
+      },
+    ],
+  },
 ];
