@@ -27,7 +27,7 @@ export default [
   //   i18n: "Email",
   // },
   {
-    url: null,
+    url: "/user",
     name: "Dashboard",
     icon: "HomeIcon",
     i18n: "Dashboard",
@@ -36,14 +36,20 @@ export default [
         url: "/user",
         name: "user",
         slug: "user",
-        i18n: "User",
+        i18n: "User"
       },
       {
         url: "/bbs",
         name: "bbs",
         slug: "bbs",
-        i18n: "Bbs",
+        i18n: "Bbs"
       },
-    ],
-  },
+      {
+        url: "/firestoretest",
+        name: "firestoretest",
+        slug: "firestoretest",
+        i18n: "firestoretest"
+      }
+    ]
+  }
 ];

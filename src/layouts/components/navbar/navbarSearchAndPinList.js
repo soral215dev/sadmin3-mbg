@@ -6,7 +6,7 @@ export default {
       // DASHBOARDS
       {
         title: "Dashboard",
-        url: "/dashboard/analytics",
+        url: "/user",
         icon: "HomeIcon",
         is_bookmarked: false
       },
